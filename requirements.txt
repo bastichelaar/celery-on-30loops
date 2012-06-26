@@ -1,2 +1,4 @@
 django
+djcelery
+kombu==2.1.0
 django-celery-with-mongodb

@@ -151,11 +151,16 @@ LOGGING = {
 CELERY_RESULT_BACKEND = "mongodb"
 CELERY_MONGODB_BACKEND_SETTINGS = {
     "host": os.environ["MONGODB_HOST"],
-    "port": os.environ["MONGODB_PORT"],
+    "port": int(os.environ["MONGODB_PORT"]),
     "user": os.environ["MONGODB_USER"],
     "password": os.environ["MONGODB_PASSWORD"],
     "database": os.environ["MONGODB_NAME"],
     "taskmeta_collection": "my_taskmeta" # Collection name to use for task output
 }
 
-BROKER_URL = os.environ["MONGODB_URL"]
+BROKER_HOST = os.environ["MONGODB_HOST"]
+BROKER_PORT =  int(os.environ["MONGODB_PORT"])
+BROKER_TRANSPORT = "mongodb"
+BROKER_VHOST = os.environ["MONGODB_NAME"]
+BROKER_USER = os.environ["MONGODB_USER"] 
+BROKER_PASSWORD = os.environ["MONGODB_PASSWORD"]
