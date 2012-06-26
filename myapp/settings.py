@@ -154,7 +154,7 @@ CELERY_MONGODB_BACKEND_SETTINGS = {
     "port": os.environ["MONGODB_PORT"],
     "user": os.environ["MONGODB_USER"],
     "password": os.environ["MONGODB_PASSWORD"],
-    "database": os.environ["MONGODB_DATABASE"],
+    "database": os.environ["MONGODB_NAME"],
     "taskmeta_collection": "my_taskmeta" # Collection name to use for task output
 }
 
