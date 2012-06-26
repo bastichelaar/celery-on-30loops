@@ -148,19 +148,23 @@ LOGGING = {
 
 # Celery specific settings
 
+import json
+with open('/app/conf/environment.json') as f:
+    env = json.load(f)
+
 CELERY_RESULT_BACKEND = "mongodb"
 CELERY_MONGODB_BACKEND_SETTINGS = {
-    "host": os.environ["MONGODB_HOST"],
-    "port": int(os.environ["MONGODB_PORT"]),
-    "user": os.environ["MONGODB_USER"],
-    "password": os.environ["MONGODB_PASSWORD"],
-    "database": os.environ["MONGODB_NAME"],
+    "host": env["MONGODB_HOST"],
+    "port": int(env["MONGODB_PORT"]),
+    "user": env["MONGODB_USER"],
+    "password": env["MONGODB_PASSWORD"],
+    "database": env["MONGODB_NAME"],
     "taskmeta_collection": "my_taskmeta" # Collection name to use for task output
 }
 
-BROKER_HOST = os.environ["MONGODB_HOST"]
-BROKER_PORT =  int(os.environ["MONGODB_PORT"])
+BROKER_HOST = env["MONGODB_HOST"]
+BROKER_PORT =  int(env["MONGODB_PORT"])
 BROKER_TRANSPORT = "mongodb"
-BROKER_VHOST = os.environ["MONGODB_NAME"]
-BROKER_USER = os.environ["MONGODB_USER"] 
-BROKER_PASSWORD = os.environ["MONGODB_PASSWORD"]
+BROKER_VHOST = env["MONGODB_NAME"]
+BROKER_USER = env["MONGODB_USER"] 
+BROKER_PASSWORD = env["MONGODB_PASSWORD"]
